@@ -1,3 +1,5 @@
+from utils import additional_function
+
 import numpy as np
 import plotly.express as px
 import dash
@@ -37,6 +39,8 @@ app.layout = html.Div([
         }
     )
 ])
+
+additional_function()
 
 if __name__ == '__main__':
     app.run_server(debug=True)
