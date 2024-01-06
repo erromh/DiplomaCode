@@ -1,13 +1,14 @@
-from flask import Flask
-from flask import make_response
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/index')
 def index():
-    response = make_response('<h1>Cookie</h1>')
-    response.set_cookie('answer', '42')
-    return response
+    return render_template('index.html')
+
+@app.route('/user/<name>')
+def user(name):
+    return render_template('user.html', name = name)
 
 if __name__=='__main__':
     app.run(debug=True)
