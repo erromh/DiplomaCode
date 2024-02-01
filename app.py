@@ -1,46 +1,31 @@
-from utils import additional_function
 
-import numpy as np
-import plotly.express as px
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-from dash.dependencies import Input, Output
+from flask import Flask, render_template, request, redirect, url_for
 
-# Генерация случайных данных
-np.random.seed(80)
-X = np.random.rand(100, 1) * 10
-y = 2 * X + 1 + np.random.randn(100, 1) * 2
+app = Flask(__name__, template_folder='Register')
 
-# Применение метода наименьших квадратов для простой линейной регрессии
-coefficients = np.polyfit(X.flatten(), y.flatten(), 1)
-slope, intercept = coefficients
+registered_users = []
 
-# Создание предсказаний для графика
-x_range = np.linspace(min(X), max(X), 100)
-y_pred = slope * x_range + intercept
+@app.route('/')
+def home():
+    return render_template('register.html')
 
-app = dash.Dash(__name__)
+@app.route('/register', methods=['POST'])
+def register():
+    username = request.form.get('username')
+    email = request.form.get('email')
+    password = request.form.get('password')
+    confirm_password = request.form.get('confirm_password')
 
-# Создание макета
-app.layout = html.Div([
-    dcc.Graph(
-        id='scatter-plot',
-        figure={
-            'data': [
-                {'x': X.flatten(), 'y': y.flatten(), 'mode': 'markers', 'name': 'Data'},
-                {'x': x_range, 'y': y_pred, 'mode': 'lines', 'name': 'Regression Line'}
-            ],
-            'layout': {
-                'title': 'Регрессия',
-                'xaxis': {'title': 'X'},
-                'yaxis': {'title': 'Y'}
-            }
-        }
-    )
-])
+    # Проверка на совпадение паролей
+    if password != confirm_password:
+        return "Пароли не совпадают. Попробуйте еще раз."
 
-additional_function()
+    # Простой пример: добавление пользователя в список
+    registered_users.append({'username': username, 'email': email, 'password': password})
+
+    # В реальном приложении здесь должна быть логика добавления пользователя в базу данных
+
+    return f"Регистрация успешна! Добро пожаловать, {username}."
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run(debug=True)
