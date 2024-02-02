@@ -9,8 +9,10 @@ body {
     background-color: #f4f4f4;
 }
 
-my-id {
-    color: #ff0000;
+#reg-label {
+    margin-top: 60px;
+    font-size: 20px;
+    color: #555;
 }
 
 form {
@@ -18,18 +20,27 @@ form {
     width: 100%;
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
+    border-radius: 25px;
+    background-color: #ffffff;
     box-sizing: border-box;
+}
+
+#username {
+    margin-bottom: 10px;
+    margin-top: 25px;
+    color: #555;
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    margin-top: 5px;
     color: #555;
 }
 
 input {
+    border: 1px solid #ccc;
+    border-radius: 25px;    
     width: 100%;
     padding: 8px;
     margin-bottom: 12px;
@@ -37,6 +48,8 @@ input {
 }
 
 input[type="submit"] {
+    border: 1px solid #ccc;
+    border-radius: 25px;
     background-color: #4caf50;
     color: white;
     cursor: pointer;

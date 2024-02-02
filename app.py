@@ -1,7 +1,9 @@
 
 from flask import Flask, render_template, request, redirect, url_for
 
-app = Flask(__name__, template_folder='Register')
+# https://codepen.io/joshsorosky/pen/gaaBoB
+
+app = Flask(__name__, template_folder = 'Register')
 
 registered_users = []
 
@@ -22,8 +24,6 @@ def register():
 
     # Простой пример: добавление пользователя в список
     registered_users.append({'username': username, 'email': email, 'password': password})
-
-    # В реальном приложении здесь должна быть логика добавления пользователя в базу данных
 
     return f"Регистрация успешна! Добро пожаловать, {username}."
 
