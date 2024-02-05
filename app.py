@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 # https://codepen.io/joshsorosky/pen/gaaBoB
 
-app = Flask(__name__, template_folder = 'Register')
+app = Flask(__name__, template_folder = 'Module1 (administration)\Register')
 
 registered_users = []
 
@@ -22,7 +22,7 @@ def register():
     if password != confirm_password:
         return "Пароли не совпадают. Попробуйте еще раз."
 
-    # Простой пример: добавление пользователя в список
+    # добавление пользователя в список
     registered_users.append({'username': username, 'email': email, 'password': password})
 
     return f"Регистрация успешна! Добро пожаловать, {username}."
