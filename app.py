@@ -3,7 +3,8 @@ from flask import Flask, render_template, request, redirect, url_for
 
 # https://codepen.io/joshsorosky/pen/gaaBoB
 
-app = Flask(__name__, template_folder = 'Module1 (administration)\Register')
+app = Flask(__name__, template_folder = 'Module1 (administration)/Register')
+app._static_folder = 'Module1 (administration)/static'
 
 registered_users = []
 
