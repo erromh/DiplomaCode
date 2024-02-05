@@ -1,0 +1,16 @@
+.blue-header {
+    background-color: #3498db; 
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.test-button {
+    background-color: #fff; /* Белый цвет фона */
+    color: #004574; /* Синий цвет текста */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #9f0202;
+    border-radius: 25px;
+    cursor: pointer
+}

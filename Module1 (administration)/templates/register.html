@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Diploma</title>
+    <title>Вход</title>
     
     <link rel="stylesheet" href="{{ url_for('static', filename = 'registerStyle.css') }}">
     
@@ -13,21 +13,15 @@
 <body>
     <form method="POST" action="{{ url_for('register') }}">
 
-        <a id="reg-label"> Регистрация </a>
+        <a id="sing-in"> Вход </a>
 
         <label for="username" id="username" >Имя пользователя:</label>
         <input type="text" name="username" required><br>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" required><br>
-
         <label for="password">Пароль:</label>
         <input type="password" name="password" required><br>
 
-        <label for="confirm_password">Подтвердите пароль:</label>
-        <input type="password" name="confirm_password" required><br>
-
-        <input type="submit" value="Зарегистрироваться">
+        <input type="submit" value="Войти">
     </form>
 </body>
 </html>

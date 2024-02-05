@@ -3,14 +3,23 @@ from flask import Flask, render_template, request, redirect, url_for
 
 # https://codepen.io/joshsorosky/pen/gaaBoB
 
-app = Flask(__name__, template_folder = 'Module1 (administration)/Register')
+app = Flask(__name__, template_folder = 'Module1 (administration)/templates')
 app._static_folder = 'Module1 (administration)/static'
 
 registered_users = []
 
 @app.route('/')
 def home():
+    return render_template('mainPage.html')
+
+@app.route('/redirect_to_next_page', methods=['POST'] )
+def redirect_to_next_page():
+    return redirect(url_for('register'))
+
+@app.route('/register')
+def next_page():
     return render_template('register.html')
+
 
 @app.route('/register', methods=['POST'])
 def register():
