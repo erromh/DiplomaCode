@@ -11,15 +11,19 @@
 </head>
 
 <body>
+<form action="{{ url_for('redirect_to_next_page') }}" method="post">
     <header class="blue-header">
-        <h1> Test </h1>
+        <h1 class="main-label"> Courses </h1>
+            <button class="test-button", type="submit">
+                <p>Вход</p>
+            </button>
     </header>
 
-    <form action="{{ url_for('redirect_to_next_page') }}" method="post">
-        
-        <button class="test-button", type="submit">
-            <p>Press me</p>
-        </button>
-    </form>
+    <div class="navbar">
+        <a class="dropdown-toggle"> Для преподавателей </a>
+    </div>
+</form>
+
+    
     
 </body>
