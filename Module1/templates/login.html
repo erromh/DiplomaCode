@@ -1,29 +1,36 @@
-{% extends "base.html" %}
+<!-- login.html -->
 
-{% block content %}
-<div class="column is-4 is-offset-4">
-    <h3 class="title">вход</h3>
-    <div class="box">
-        <form method="POST" action="/login">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="email" name="email" placeholder="Your Email" autofocus="">
-                </div>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
 
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Your Password">
-                </div>
+<h2>Login</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
             </div>
-            <div class="field">
-                <label class="checkbox">
-                    <input type="checkbox" name="remember">
-                    Сохранить вход
-                </label>
-            </div>
-            <button class="button is-block is-info is-large is-fullwidth">Войти</button>
-        </form>
-    </div>
-</div>
-{% endblock %}
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<form method="POST">
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br>
+    <input type="submit" value="Login">
+</form>
+
+<p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+<p>Forgot password? <a href="{{ url_for('forgot_password') }}">Reset password</a></p>
+
+</body>
+</html>
