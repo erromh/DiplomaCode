@@ -1,12 +1,13 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, flash, render_template, redirect, request, url_for
+from flask_login import current_user, login_user
 from flask_user import login_required, UserManager, UserMixin
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'super-secret-key'  # Секретный ключ для защиты сессий и токенов
+app.config['SECRET_KEY'] = 'super-secret-key' 
 
 # Конфигурация Flask-User
 class User(UserMixin):
-    def __init__(self, id):
+    def __init__(self, id, email, password):
         self.id = id
 
 user_manager = UserManager(app, User)
