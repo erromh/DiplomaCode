@@ -1,41 +1,23 @@
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-from flask import Flask, render_template, request, redirect, url_for
+# init SQLAlchemy so we can use it later in our models
+db = SQLAlchemy()
 
-# https://codepen.io/joshsorosky/pen/gaaBoB
+def create_app():
+    app = Flask(__name__)
 
-app = Flask(__name__, template_folder = 'Module1 (administration)/templates')
-app._static_folder = 'Module1 (administration)/static'
+    app.config['SECRET_KEY'] = 'secret-key-goes-here'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
-registered_users = []
+    db.init_app(app)
 
-@app.route('/')
-def home():
-    return render_template('mainPage.html')
+    # blueprint for auth routes in our app
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint)
 
-@app.route('/redirect_to_next_page', methods=['POST'] )
-def redirect_to_next_page():
-    return redirect(url_for('register'))
+    # blueprint for non-auth parts of app
+    from . import main as main_blueprint
+    app.register_blueprint(main_blueprint)
 
-@app.route('/register')
-def next_page():
-    return render_template('register.html')
-
-
-@app.route('/register', methods=['POST'])
-def register():
-    username = request.form.get('username')
-    email = request.form.get('email')
-    password = request.form.get('password')
-    confirm_password = request.form.get('confirm_password')
-
-    # Проверка на совпадение паролей
-    if password != confirm_password:
-        return "Пароли не совпадают. Попробуйте еще раз."
-
-    # добавление пользователя в список
-    registered_users.append({'username': username, 'email': email, 'password': password})
-
-    return f"Регистрация успешна! Добро пожаловать, {username}."
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    return app
