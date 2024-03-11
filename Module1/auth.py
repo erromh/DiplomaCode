@@ -18,8 +18,6 @@ def login_post():
 
     user = User.query.filter_by(email=email).first()
 
-    # check if the user actually exists
-    # take the user-supplied password, hash it, and compare it to the hashed password in the database
     if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
         return redirect(url_for('auth.login'))
@@ -27,6 +25,10 @@ def login_post():
     login_user(user, remember=remember)
     return redirect(url_for('main.profile'))
 
+
+@auth.route('/signup')
+def singup():
+    return render_template('signup.html')
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():

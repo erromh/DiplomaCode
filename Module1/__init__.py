@@ -16,7 +16,7 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    from .models import User
+    from . models import User
     with app.app_context():
         db.create_all()
 
