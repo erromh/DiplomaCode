@@ -23,14 +23,19 @@ def login_post():
         return redirect(url_for('auth.login'))
     
     login_user(user, remember=remember)
+
     return redirect(url_for('main.profile'))
 
+
+@auth.route('/admin_login')
+def admin_login():
+    return render_template('admin_panel.html')
 
 @auth.route('/signup')
 def singup():
     return render_template('signup.html')
 
-@auth.route('/signup', methods=['POST'])
+@auth.route('/signup', methods=['GET', 'POST'])
 def signup_post():
     email = request.form.get('email')
     name = request.form.get('name')
@@ -41,7 +46,7 @@ def signup_post():
     if user:
         return redirect(url_for('auth.signup_post'))
 
-    new_user = User(email=email, name=name, password = password)
+    new_user = User(email=email, name=name, password=password)
 
     db.session.add(new_user)
     db.session.commit()
