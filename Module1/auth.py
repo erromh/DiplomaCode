@@ -29,7 +29,12 @@ def login_post():
 
 @auth.route('/admin_login')
 def admin_login():
-    return render_template('admin_panel.html')
+    return render_template('admin_login.html')
+
+@auth.route('/admin_login')
+def admin_login_post():
+    
+    return 
 
 @auth.route('/signup')
 def singup():
