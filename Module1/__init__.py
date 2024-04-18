@@ -5,6 +5,9 @@ from flask import g
 
 db = SQLAlchemy()
 
+login_manager = LoginManager()
+login_manager.login_view = 'auth.login'
+
 def create_app():
     app = Flask(__name__)
 
@@ -12,8 +15,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    login_manager = LoginManager()
-    login_manager.login_view = 'auth.login'
+    
     login_manager.init_app(app)
 
     from . models import User
