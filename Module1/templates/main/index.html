@@ -1,4 +1,19 @@
 {% extends 'base.html' %}
 {% block app_content %}
   <h1>Hello {{ current_user.username }}!</h1>
+
+  <br>
+  <h2>Режим</h2>
+        <input type="radio" id="option1" name="option" value="option1" required>
+        <label for="option1">Обучение</label><br>
+        
+        <input type="radio" id="option2" name="option" value="option2" required>
+        <label for="option2">Экзамен</label><br>
+        
+        <div class="submit-button">
+        
+          <button type="submit">Получить задание</button>
+
+        </div>
+</body>
 {% endblock %}

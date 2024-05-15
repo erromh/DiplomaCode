@@ -3,3 +3,10 @@
     background-color: #d1ecf1;
     border-color: #bee5eb;
 }
+
+.submit-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-right: 150px;
+}
