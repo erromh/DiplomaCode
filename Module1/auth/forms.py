@@ -6,23 +6,23 @@ from Module1.model import User
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember = BooleanField('Remember me')
-    submit = SubmitField('Log In Now')
+    username = StringField('Имя пользователя', validators=[DataRequired()])
+    password = PasswordField('Пароль', validators=[DataRequired()])
+    remember = BooleanField('Запомнить меня')
+    submit = SubmitField('Войти')
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user is None:
-            raise ValidationError('User does not exist')
+            raise ValidationError('Такого пользователя нет')
 
 
 class RegisterForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Register Now')
+    username = StringField('Имя пользователя', validators=[DataRequired()])
+    email = StringField('Почта', validators=[DataRequired(), Email()])
+    password = PasswordField('Пароль', validators=[DataRequired()])
+    confirm = PasswordField('Повторите пароль', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Зарегистрироваться')
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
