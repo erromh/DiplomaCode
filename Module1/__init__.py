@@ -11,7 +11,7 @@ bcrypt = Bcrypt()
 db = SQLAlchemy()
 login = LoginManager()
 login.login_view = 'auth.login'
-login.login_message = 'Please log in to access this page.'
+login.login_message = 'Необходимо войти для просмотра этой страницы.'
 mail = Mail()
 bootstrap = Bootstrap()
 
