@@ -3,7 +3,7 @@
   {% if title %}
     {{ title }}
   {% else %}
-    Регистрация
+    Задание
   {% endif %}
 {% endblock %}
 
@@ -11,9 +11,11 @@
   {% include 'includes/_navbar.html' %}
 {% endblock %}
 
+
 {% block content %}
   <div class="container mt-3">
     {% block app_content %}
     {% endblock %}
+
   </div>
 {% endblock %}
