@@ -5,9 +5,8 @@
 
   <br>
   <h2>Режим</h2>
-  <form method="POST" action="{{ url_for('main.mode_selection') }}" target="_blank">
-        
-    <input type="radio" id="option1" name="option" value="Обучение" required>
+  <form method="POST" action="{{ url_for('main.mode_selection') }}">
+        <input type="radio" id="option1" name="option" value="Обучение" required>
         <label for="option1">Обучение</label><br>
         
         <input type="radio" id="option2" name="option" value="Экзамен" required>
@@ -18,39 +17,10 @@
         </div>
   </form>
 
-  <textarea name="exersize-textarea" rows="10" cols="65" readonly>
+  <textarea id="exercise-textarea" name="exercise-textarea" rows="10" cols="65" readonly>
     {% if selected_option %}
       {{ selected_option }}
-    {% endif %}  
+    {% endif %}
   </textarea>
-
-  <script>
-    function submitForm(event) {
-      event.preventDefault(); // Остановка стандартного поведения формы
-      const form = document.getElementById('modeForm');
-      const formData = new FormData(form);
-      const selectedOption = formData.get('option');
-
-      // Открытие новой вкладки
-      const newTab = window.open(form.action, '_blank');
-      const newTabForm = newTab.document.createElement('form');
-      newTabForm.method = 'POST';
-      newTabForm.action = form.action;
-
-      const input = newTab.document.createElement('input');
-      input.type = 'hidden';
-      input.name = 'option';
-      input.value = selectedOption;
-      newTabForm.appendChild(input);
-
-      newTab.document.body.appendChild(newTabForm);
-      newTabForm.submit();
-
-      // Обновление textarea на основной странице
-      const textarea = document.getElementById('exersize-textarea');
-      textarea.value = selectedOption;
-    }
-  </script>
-
 </body>
 {% endblock %}
