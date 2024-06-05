@@ -43,6 +43,9 @@ correlation_matrix = np.corrcoef(data_matrix)
 X = sm.add_constant(np.column_stack((x1, x2, x3)))  # Добавляем константу
 model = sm.OLS(y, X).fit()
 
+
+
+
 # Вывод результатов регрессии
 model_summary = model.summary().as_text()
 

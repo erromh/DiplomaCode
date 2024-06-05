@@ -29,20 +29,20 @@
           <button type="submit">Получить задание</button>
         </div>
 
-        <textarea id="exercise-textarea" name="exercise-textarea" rows="15" cols="75" readonly>
-          {% if selected_option %}
-            {{ selected_option }}
+        <textarea id="exercise-textarea-x" name="exercise-textarea-x" rows="10" cols="80" readonly>
+          {% if x_data %}
+            {{ x_data|safe }}
           {% endif %}
         </textarea>
-      </form>
     </div>
 
     <div class="tab-pane fade" id="result" role="tabpanel" aria-labelledby="result-tab">
-      <textarea id="result-textarea" name="result-textarea" rows="15" cols="75" readonly>
-        {% if x_data %}
-          {{ x_data }}
+      <textarea id="result-textarea" name="result-textarea" rows="15" cols="90" readonly>
+        {% if result_text %}
+         {{ result_text|safe }}
         {% endif %}
       </textarea>
+    </form>
     </div> 
 </body>
 {% endblock %}
