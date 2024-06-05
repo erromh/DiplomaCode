@@ -14,6 +14,14 @@ def index():
 @main.route('/mode_selection', methods=['GET', 'POST'])
 def mode_selection():
 
+    x_data = None
+    
+    result_text = (
+        "Инструкция:\n"
+        "Выберите режим 'Обучение' для генерации данных факторов.\n"
+        "Выберите режим 'Экзамен' для прикрепления ссылок."
+    )
+
     if request.method == 'POST':
         selected_option = request.form.get('option')
         
@@ -28,6 +36,12 @@ def mode_selection():
             x2 = np.random.uniform(0, 10, num_observations) if num_factors > 1 else np.zeros(num_observations)
             x3 = np.random.uniform(0, 1000, num_observations) if num_factors > 2 else np.zeros(num_observations)
             
+            x_data = (
+                f"x1: {x1}\n"
+                f"x2: {x2}\n"
+                f"x3: {x3}\n"
+            )
+
             # Сгенерировать равномерно распределенные параметры регрессионной модели
             a0 = np.random.uniform(-100, 100)
             a1 = np.random.uniform(-1, 1)
@@ -56,10 +70,7 @@ def mode_selection():
             y = y_trend + e
                         
             result_text = (
-                f"\nСгенерированные данные:\n\n"
-                f"x1: {x1}\n\n"
-                f"x2: {x2}\n\n"
-                f"x3: {x3}\n\n"
+                f"Сгенерированные данные:\n\n"
                 f"Параметры регрессионной модели:\n"
                 f"a0: {a0}\n"
                 f"a1: {a1}\n"

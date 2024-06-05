@@ -12,15 +12,12 @@
   </ul>
 
   <br>
-  
   <h1>{{ current_user.username }}</h1>
-
   <br>
 
   <div class="tab-content" id="myTabContent">
-    
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <h2>Режим</h2>
+      <h2>Режим</h2> <br>
       <form method="POST" action="{{ url_for('main.mode_selection') }}">
         <input type="radio" id="option1" name="option" value="Обучение" required>
         <label for="option1">Обучение</label><br>
@@ -32,7 +29,7 @@
           <button type="submit">Получить задание</button>
         </div>
 
-        <textarea id="exercise-textarea" name="exercise-textarea" rows="10" cols="75" readonly>
+        <textarea id="exercise-textarea" name="exercise-textarea" rows="15" cols="75" readonly>
           {% if selected_option %}
             {{ selected_option }}
           {% endif %}
@@ -41,7 +38,11 @@
     </div>
 
     <div class="tab-pane fade" id="result" role="tabpanel" aria-labelledby="result-tab">
-      <p>Здесь будут отображаться результаты.</p>
+      <textarea id="result-textarea" name="result-textarea" rows="15" cols="75" readonly>
+        {% if x_data %}
+          {{ x_data }}
+        {% endif %}
+      </textarea>
     </div> 
 </body>
 {% endblock %}
