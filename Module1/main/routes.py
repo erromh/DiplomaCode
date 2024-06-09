@@ -28,14 +28,15 @@ def mode_selection():
         if selected_option == 'Обучение':
             
             # Генерация данных для режима "Обучение"
-            num_factors = np.random.randint(1, 4)  # Количество переменных-факторов: 1, 2 или 3
+            num_factors = np.random.randint(1, 5)  # Количество переменных-факторов: 1, 2, 3, 4
             num_observations = np.random.randint(10, 31)  # Количество наблюдений: от 10 до 30
             
             # Сгенерировать равномерно распределенные выборки факторов
             x1 = np.random.uniform(0, 100, num_observations)
             x2 = np.random.uniform(0, 10, num_observations) if num_factors > 1 else np.zeros(num_observations)
             x3 = np.random.uniform(0, 1000, num_observations) if num_factors > 2 else np.zeros(num_observations)
-            
+            x4 = np.random.uniform(0, 100, num_observations) if num_factors > 2 else np.zeros(num_observations)
+
             x_data = (
                 f"\nПостроить модель регрессии из исходных данных, оценить качество модели, построить прогноз.\n\n"
 
@@ -50,7 +51,8 @@ def mode_selection():
                 
                 "x1:\n" + "\n".join([f"{x:.10f}" for x in x1]) +
                 "\n\nx2:\n" + "\n".join([f"{x:.10f}" for x in x2]) +
-                "\n\nx3:\n" + "\n".join([f"{x:.10f}" for x in x3])
+                "\n\nx3:\n" + "\n".join([f"{x:.10f}" for x in x3]) 
+                # "\n\nx4:\n" + "\n".join([f"{x:.10f}" for x in x4])
             )
 
             # Сгенерировать равномерно распределенные параметры регрессионной модели
@@ -151,6 +153,13 @@ def mode_selection():
             predicted_y_10 = model.predict([1, new_x1_10, new_x2_10, new_x3_10])
             predicted_y_20 = model.predict([1, new_x1_20, new_x2_20, new_x3_20])
 
+            # Подготовить текст для вывода в textarea
+            correlation_matrix
+            model_summary 
+            F_value
+            F_table
+            significance_model
+            
             result_text = (
                 f"\nПараметры регрессионной модели:\n"
                 f"a0: {a0}\n"
@@ -161,16 +170,16 @@ def mode_selection():
                 f"Среднее y_trend_mean: {y_trend_mean}\n\n"
                 f"Среднеквадратическое отклонение остатков std_e: {std_e}\n\n"
                 f"Выборка остатков e:\n{e}\n\n"
-                f"Рассчитанные значения y:\n{y}"
-                "Матрица коэффициентов парной корреляции:",
-                f"{correlation_matrix}",
-                "Результаты регрессии:",
-                f"{model_summary}",
-                f"Критерий использован: F-критерий",
-                f"Расчетное значение F-критерия: {F_value}",
-                f"Табличное значение F-критерия: {F_table}",
-                f"Вывод о значимости модели: {significance_model}",
-                "Критерий использован: t-статистика",
+                f"Рассчитанные значения y:\n{y}\n\n"
+                "Матрица коэффициентов парной корреляции:\n"
+                f"{correlation_matrix}\n\n"
+                "Результаты регрессии:\n"
+                f"{model_summary}\n\n"
+                "Критерий использован: F-критерий\n"
+                f"Расчетное значение F-критерия: {F_value}\n"
+                f"Табличное значение F-критерия: {F_table}\n"
+                f"Вывод о значимости модели: {significance_model}\n\n"
+                "Критерий использован: t-статистика\n"
             )
 
             selected_option = x_data    #result_text

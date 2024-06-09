@@ -45,7 +45,6 @@ model = sm.OLS(y, X).fit()
 
 
 
-
 # Вывод результатов регрессии
 model_summary = model.summary().as_text()
 
