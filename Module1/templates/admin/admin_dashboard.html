@@ -1,0 +1,7 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h2>Панель администратора</h2>
+<a href="{{ url_for('admin.manage_users') }}">Управление пользователями</a><br>
+<a href="{{ url_for('admin.create_assignment') }}">Создать задание</a>
+{% endblock %}

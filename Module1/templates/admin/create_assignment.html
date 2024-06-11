@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Создать задание</h2>
+<!-- Здесь будет форма для создания задания -->
+<form method="POST" action="{{ url_for('admin.create_assignment') }}">
+    {{ form.hidden_tag() }}
+    {{ form.assignment_name.label }} {{ form.assignment_name }}<br>
+    {{ form.assignment_description.label }} {{ form.assignment_description }}<br>
+    {{ form.submit }}
+</form>
+{% endblock %}

@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
-
+from flask_migrate import Migrate
 from config import Config
 
 bcrypt = Bcrypt()
@@ -15,16 +15,16 @@ login.login_message = 'Необходимо войти для просмотра
 mail = Mail()
 bootstrap = Bootstrap()
 
+app = Flask(__name__)
 
 def create_app(config=Config):
-    app = Flask(__name__)
     app.config.from_object(config)
-
     bcrypt.init_app(app)
     login.init_app(app)
     db.init_app(app)
     mail.init_app(app)
     bootstrap.init_app(app)
+    migrate = Migrate(app, db)
 
     from Module1.main.routes import main
     app.register_blueprint(main)
@@ -34,4 +34,3 @@ def create_app(config=Config):
 
     return app
 
-from Module1 import model

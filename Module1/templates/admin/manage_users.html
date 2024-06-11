@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Управление пользователями</h2>
+<!-- Здесь будет форма для создания, редактирования и удаления пользователей -->
+<form method="POST" action="{{ url_for('admin.register_user') }}">
+    {{ form.hidden_tag() }}
+    {{ form.username.label }} {{ form.username }}<br>
+    {{ form.email.label }} {{ form.email }}<br>
+    {{ form.password.label }} {{ form.password }}<br>
+    {{ form.confirm.label }} {{ form.confirm }}<br>
+    {{ form.admin.label }} {{ form.admin }}<br>
+    {{ form.submit }}
+</form>
+{% endblock %}
